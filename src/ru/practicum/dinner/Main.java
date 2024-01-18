@@ -13,9 +13,8 @@ public class Main {
 
         while (true) {
             printMenu();
-            String command = scanner.nextLine();
 
-            switch (command) {
+            switch (scanner.nextLine()) {
                 case "1":
                     addNewDish();
                     break;
@@ -23,7 +22,12 @@ public class Main {
                     generateDishCombo();
                     break;
                 case "3":
+                    System.out.println("Работа программы завершена.");
+                    scanner.close();
                     return;
+                default:
+                    System.out.println("Введена неправильная команда. Попробуйте снова.");
+                    break;
             }
         }
     }
@@ -41,25 +45,31 @@ public class Main {
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
 
-        // добавьте новое блюдо
+        dc.addNewDishToDishList(dishType, dishName);
     }
 
     private static void generateDishCombo() {
         System.out.println("Начинаем конструировать обед...");
 
+        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+        String nextItem;
+        do {
+            nextItem = scanner.nextLine();
+            dc.addCategoriesToMenu(nextItem);
+
+        } while (!nextItem.isEmpty());
+
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
-        scanner.nextLine();
 
-        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
-        String nextItem = scanner.nextLine();
-
-        //реализуйте ввод типов блюд
-        while (!nextItem.isEmpty()) {
-
+        if (numberOfCombos > dc.getMaxNumberOfCombos()) {
+            System.out.println("Введенное значение превышает максимально допустимое для списка блюд ресторана");
+            numberOfCombos = dc.getMaxNumberOfCombos();
+            System.out.println("Установлено максимально допустимое кол-во наборов");
         }
 
-        // сгенерируйте комбинации блюд и выведите на экран
-
+        dc.getRandomMenusSet(numberOfCombos);
+        System.out.println();
+        scanner.nextLine();
     }
 }
