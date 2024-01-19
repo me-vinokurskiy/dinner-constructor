@@ -5,9 +5,11 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class DinnerConstructor {
-    Random random = new Random();
+
     static HashMap<String, ArrayList<String>> dishList = new HashMap<>();
     ArrayList<String> dishesSetToCreate = new ArrayList<>();
+
+    // Из опыта только практикум, но люблю "поломать голову" над разными задачами
 
     private static class NewDish {
         boolean isExist;
@@ -83,7 +85,7 @@ public class DinnerConstructor {
 
         int i = 0;
         while (i < numberOfCombos) {
-
+            Random random = new Random();
             ArrayList<String> randomDishesByCategories = new ArrayList<>();
 
             for (String dishesSet : dishesSetToCreate) {
