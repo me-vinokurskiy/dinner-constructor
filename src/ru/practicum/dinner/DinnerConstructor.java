@@ -9,7 +9,7 @@ public class DinnerConstructor {
     static HashMap<String, ArrayList<String>> dishList = new HashMap<>();
     ArrayList<String> dishesSetToCreate = new ArrayList<>();
 
-    // Из опыта только практикум, но люблю "поломать голову" над разными задачами
+    // Приветствую. Из опыта только текущий курс, но люблю "поломать голову" над разными решениями.
 
     private static class NewDish {
         boolean isExist;
